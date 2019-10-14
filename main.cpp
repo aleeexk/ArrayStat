@@ -1,4 +1,4 @@
-#include "Arraystat.cpp"
+#include "Arraystat.h"
 
 int main() {
     Arraystat ar;
@@ -11,5 +11,5 @@ int main() {
         cin >> buf;
         ar.pushArray(buf);
     }
-    
+
 };

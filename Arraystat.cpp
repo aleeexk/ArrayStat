@@ -1,13 +1,15 @@
 #include "Arraystat.h"
 
-Arraystat::Arraystat(vector<int> newlist) {
-    list = newlist;
-    sortlist = list;
+Arraystat::Arraystat(vector<int> &newlist) {
+    sortlist = newlist;
     sort(sortlist.begin(), sortlist.end());
-    maxnumber = *std::max_element(newlist.begin(), newlist.end());
-    minnumber = *std::min_element(newlist.begin(), newlist.end());
-}
-
+    maxnumber = sortlist.back();
+    minnumber = sortlist.front();
+    meann = accumulate(newlist.begin(), newlist.end(), 0) / newlist.size();
+    for (int i : newlist) {
+        rmss += (meann - i) * (meann - i) / list.size();
+    }
+    rmsss = sqrt(rmss)
 Arraystat::Arraystat() = default;
 
 void Arraystat::pushArray(int a) {
@@ -26,7 +28,7 @@ void Arraystat::pushArray(int a) {
 void Arraystat::print() {
     cout << "Unsorted";
     cout << endl;
-    for (int i = 0; i < sortlist.size(); i++) {
+    for (int i : list) {
         cout << list[i] << " ";
     }
     cout << endl;
@@ -46,25 +48,15 @@ int Arraystat::min() const{
 }
 
 double Arraystat::mean() const{
-    float result = 0;
-    result = accumulate(list.begin(), list.end(), 0) / list.size();
-    return result;
+    return meann;
 }
 
 double Arraystat::rms() const{
-    double result = 0;
-    double mean;
-    mean = this->mean();
-    for (int i : list) {
-        result += (mean - i) * (mean - i) / list.size();
-    }
-    return sqrt((double) result);
+    return rmsss;
 }
 
 size_t Arraystat::countLarger(int a) {
     size_t count = 0;
-    for (int i : list) {
-        if (i >= a) count++;
-    }
+    count = distance(lower_bound(sortlist.begin(), sortlist.end()), sortlist.end());
     return count;
 }
