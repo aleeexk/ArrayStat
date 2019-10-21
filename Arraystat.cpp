@@ -1,5 +1,5 @@
 #include "Arraystat.h"
-
+using namespace std;
 Arraystat::Arraystat(vector<int> &newlist) {
     sortlist = newlist;
     sort(sortlist.begin(), sortlist.end());
@@ -9,8 +9,7 @@ Arraystat::Arraystat(vector<int> &newlist) {
     for (int i : newlist) {
         rmss += (meann - i) * (meann - i) / list.size();
     }
-    rmsss = sqrt(rmss)
-Arraystat::Arraystat() = default;
+    rmsss = sqrt(rmss);}
 
 void Arraystat::pushArray(int a) {
     if (!list.empty()) {
@@ -21,8 +20,6 @@ void Arraystat::pushArray(int a) {
         minnumber = a;
     }
     list.push_back(a);
-    this->pushsort(a);
-
 }
 
 void Arraystat::print() {
@@ -57,6 +54,6 @@ double Arraystat::rms() const{
 
 size_t Arraystat::countLarger(int a) {
     size_t count = 0;
-    count = distance(lower_bound(sortlist.begin(), sortlist.end()), sortlist.end());
+    count = distance (lower_bound(sortlist.begin(), sortlist.end()), sortlist.end(), 0);
     return count;
 }
