@@ -3,12 +3,12 @@
 int main() {
     Arraystat ar;
     int n;
-    cout << "Number of values: ";
-    cin >> n;
+    std::cout << "Number of values: ";
+    std::cin >> n;
     for (int i = 0; i < n; i++)
     {
         int buf;
-        cin >> buf;
+        std::cin >> buf;
         ar.pushArray(buf);
     }
 
